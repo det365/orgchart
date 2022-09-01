@@ -1,350 +1,299 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fall 2022 Org Chart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Password Protected Page</title>
+    <style>
+        html, body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #dialogText {
+            color: white;
+            background-color: #333333;
+        }
+        
+        #dialogWrap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: table;
+            background-color: #EEEEEE;
+        }
+        
+        #dialogWrapCell {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        #mainDialog {
+            max-width: 400px;
+            margin: 5px;
+            border: solid #AAAAAA 1px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px 3px #AAAAAA;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+            overflow: hidden;
+            text-align: left;
+        }
+        #mainDialog > * {
+            padding: 10px 30px;
+        }
+        #passArea {
+            padding: 20px 30px;
+            background-color: white;
+        }
+        #passArea > * {
+            margin: 5px auto;
+        }
+        #pass {
+            width: 100%;
+            height: 40px;
+            font-size: 30px;
+        }
+        
+        #messageWrapper {
+            float: left;
+            vertical-align: middle;
+            line-height: 30px;
+        }
+        
+        .notifyText {
+            display: none;
+        }
+        
+        #invalidPass {
+            color: red;
+        }
+        
+        #success {
+            color: green;
+        }
+        
+        #submitPass {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: #E7E7E7;
+            border: solid gray 1px;
+            float: right;
+            cursor: pointer;
+        }
+        #contentFrame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #attribution {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+        #attribution, #attribution a {
+            color: #999;
+        }
+        .error {
+            display: none;
+            color: red;
+        }
+    </style>
   </head>
   <body>
-    <h1 class="bg-dark text-center text-white">Fall 2022 Org Chart</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-  
-
-    
-    <div class="container">
-      <p>Cadets, here is the Fall 2022 AFROTC Det 365 org chart for names, positions, and contact information. Please 
-        adhere to the chain of command for all Cadet Wing communications! 
-  
-        If you spot a mistake, spelling error, or have a suggestion, please email C/Bertaina (C/ATRO) at 
-        <a href="mailto:graysonb@mit.edu">graysonb@mit.edu</a>.</p>
-        <h2 class="section-title flex-row flex-wrap">Wing Staff</h2>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4"style="margin-top:2vh;">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h5 class="card-title">Ariann Jones</h5>
-                  <p class="position-title"><em><h6>Cadet Wing Commander, C/Col</h6></em>
-                  Email: ariannsanford@college.harvard.edu</p>
-                  <a href="mailto:ariannsanford@college.harvard.edu" class="btn btn-primary">Email</a>
+    <iframe id="contentFrame" frameBorder="0" allowfullscreen></iframe>
+    <div id="dialogWrap">
+        <div id="dialogWrapCell">
+            <div id="mainDialog">
+                <div id="dialogText">This page is password protected.</div>
+                <div id="passArea">
+                    <p id="passwordPrompt">Password</p>
+                    <input id="pass" type="password" name="pass" autofocus>
+                    <div>
+                        <span id="messageWrapper">
+                            <span id="invalidPass" class="error">Sorry, please try again.</span>
+                            <span id="trycatcherror" class="error">Sorry, something went wrong.</span>
+                            <span id="success" class="notifyText">Success!</span>
+                            &nbsp;
+                        </span>
+                        <button id="submitPass" type="button">Submit</button>
+                        <div style="clear: both;"></div>
+                    </div>
                 </div>
-              </div>
+                <div id="securecontext" class="error">
+                    <p>
+                        Sorry, but password protection only works over a secure connection. Please load this page via HTTPS.
+                    </p>
+                </div>
+                <div id="nocrypto" class="error">
+                    <p>
+                        Your web browser appears to be outdated. Please visit this page using a modern browser.
+                    </p>
+                </div>
             </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h5 class="card-title">Charlotte Wickert</h5>
-                  <p><em><h6>Cadet Wing Inspector General, C/Col</h6></em>
-                  Email: cwickert@mit.edu</p>
-                  <a href="mailto:cwickert@mit.edu" class="btn btn-primary">Email</a>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">Edenna Chen</h5>
-                    <p><em><h6>Cadet Wing Vice Commander, C/Col</h6></em>
-                    Email: edenna@mit.edu </p>
-                    <a href="mailto:edenna@mit.edu" class="btn btn-primary">Email</a>
-                  </div>
-                </div>
-              </div>
         </div>
-            
-
-        <div class="row" style="margin-top:2vh;">
-
-              <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">Jasmine Adams</h5>
-                    <p><em><h6>Cadet Wing FO, C/Maj</h6></em>
-                    Email: jasmineadams@college.harvard.edu </p>
-                    <a href="mailto:jasmineadams@college.harvard.edu" class="btn btn-primary">Email</a>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4">
-                <div class="card h-100">
-                    <div class="card-body">
-                    <h5 class="card-title">Brad Campbell</h5>
-                    <p><em><h6>Cadet Wing IGA, C/Maj</h6></em>
-                    Email: bfcampbell@college.harvard.edu </p>
-                    <a href="mailto:bfcampbell@college.harvard.edu" class="btn btn-primary">Email</a>
-                    </div>
-                </div>
-              </div>  
-
-            </div>
     </div>
-
-    <div class="container" style="margin-top:5vh;">
-        <h2 class="section-title flex-row flex-wrap">Operations Group (OG)</h2>
-        
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4"style="margin-top:2vh;">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h5 class="card-title">Jupneet Singh</h5>
-                  <p class="position-title"><em><h6>OG Cadet Commander, C/Lt Col</h6></em>
-                  Email: jupneet@mit.edu</p>
-                  <a href="mailto:jupneet@mit.edu" class="btn btn-primary">Email</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-              <div class="card h-100">
-                <div class="card-body">
-                  <h5 class="card-title">John Pendergrast</h5>
-                  <p><em><h6>OG Cadet Deputy, C/Lt Col</h6></em>
-                  Email: jpender@mit.edu</p>
-                  <a href="mailto:jpender@mit.edu" class="btn btn-primary">Email</a>
-                </div>
-              </div>
-            </div>
-            
-        </div>
-            
-        <h4 style="margin-top:4vh;">Madhatter Squadron</h4>
-        <div class="row" style="margin-top:2vh;">
-
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">Joseph McDonough</h5>
-                    <p><em><h6>Madhatter Squadron Cadet Commander, C/Maj</h6></em>
-                    Email: jmcdonough@college.harvard.edu </p>
-                    <a href="mailto:jmcdonough@college.harvard.edu" class="btn btn-primary">Email</a>
-                  </div>
-                </div>
-            </div>
-
-              <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                  <div class="card-body">
-                    <h5 class="card-title">Micah Borrero</h5>
-                    <p><em><h6>Madhatter Squadron Cadet Deputy, C/Capt</h6></em>
-                    Email: mborrero@mit.edu </p>
-                    <a href="mailto:mborrero@mit.edu" class="btn btn-primary">Email</a>
-                  </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                    <div class="card-body">
-                    <h5 class="card-title">Jack Rich</h5>
-                    <p><em><h6>Orion Flight Cadet Commander, C/1st Lt</h6></em>
-                    Email: jackrich@mit.edu </p>
-                    <a href="mailto:jackrich@mit.edu" class="btn btn-primary">Email</a>
-                    </div>
-                </div>
-              </div>  
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                 <div class="card-body">
-                  <h5 class="card-title">Kayra Yaman</h5>
-                  <p><em><h6>Gemini Flight Cadet Commander, C/1st Lt</h6></em>
-                  Email: kayrayaman@college.harvard.edu </p>
-                   <a href="mailto:kayrayaman@college.harvard.edu" class="btn btn-primary">Email</a>
-                </div>
-                </div>
-            </div> 
-
-            </div>
-
-
-            <h4 style="margin-top:4vh;">Tomahawk Squadron</h4>
-            <div class="row" style="margin-top:2vh;">
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Odin Doolittle</h5>
-                        <p><em><h6>Tomahawk Squadron Cadet Commander, C/Maj</h6></em>
-                        Email: odin.doolittle@tufts.edu </p>
-                        <a href="mailto:odin.doolittle@tufts.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                  <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Ben Schroeder</h5>
-                        <p><em><h6>Tomahawk Squadron Cadet Deputy, C/Capt</h6></em>
-                        Email: bschroeder@college.harvard.edu </p>
-                        <a href="mailto:bschroeder@college.harvard.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                        <div class="card-body">
-                        <h5 class="card-title">Kaylee Kim</h5>
-                        <p><em><h6>Apollo Flight Cadet Commander, C/1st Lt</h6></em>
-                        Email: kayleekim@college.harvard.edu </p>
-                        <a href="mailto:kayleekim@college.harvard.edu" class="btn btn-primary">Email</a>
-                        </div>
-                    </div>
-                  </div>  
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                     <div class="card-body">
-                      <h5 class="card-title">Patrick Whartenby</h5>
-                      <p><em><h6>Mercury Flight Cadet Commander, C/1st Lt</h6></em>
-                      Email: pwartenb@mit.edu </p>
-                       <a href="mailto:pwartenb@mit.edu" class="btn btn-primary">Email</a>
-                    </div>
-                    </div>
-                </div> 
-    
-            </div>
-            <h4 style="margin-top:4vh;">Sidewinder Squadron</h4>
-            <div class="row" style="margin-top:2vh;">
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Kaili Glasser</h5>
-                        <p><em><h6>Sidewinder Squadron Cadet Commander, C/Maj</h6></em>
-                        Email: glasserk@mit.edu </p>
-                        <a href="mailto:glasserk@mit.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                  <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Logan Madrigal-Silver</h5>
-                        <p><em><h6>Sidewinder Squadron Cadet Deputy, C/Capt</h6></em>
-                        Email: madlogan@mit.edu </p>
-                        <a href="mailto:madlogan@mit.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                        <div class="card-body">
-                        <h5 class="card-title">Christopher Wong</h5>
-                        <p><em><h6>Viking Flight Cadet Commander, C/1st Lt</h6></em>
-                        Email: czwong@mit.edu </p>
-                        <a href="mailto:czwong@mit.edu" class="btn btn-primary">Email</a>
-                        </div>
-                    </div>
-                  </div>  
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                     <div class="card-body">
-                      <h5 class="card-title">Tim Grazier</h5>
-                      <p><em><h6>Juno Flight Cadet Commander, C/1st Lt</h6></em>
-                      Email: tgrazier@mit.edu </p>
-                       <a href="mailto:tgrazier@mit.edu" class="btn btn-primary">Email</a>
-                    </div>
-                    </div>
-                </div> 
-    
-            </div>
-
-            <h4 style="margin-top:4vh;">TSS & PFO Squadron</h4>
-            <div class="row" style="margin-top:2vh;">
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Cameron Morgan</h5>
-                        <p><em><h6>TSS Squadron Cadet Commander, C/Maj</h6></em>
-                        Email: cam_morgan@college.harvard.edu </p>
-                        <a href="mailto:cam_morgan@college.harvard.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                  <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                      <div class="card-body">
-                        <h5 class="card-title">Kaira Samuel</h5>
-                        <p><em><h6>TSS Squadron Cadet Deputy, C/Capt</h6></em>
-                        Email: kmsamuel@mit.edu </p>
-                        <a href="mailto:kmsamuel@mit.edu" class="btn btn-primary">Email</a>
-                      </div>
-                    </div>
-                </div>
-    
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                        <div class="card-body">
-                        <h5 class="card-title">Derek Vastola</h5>
-                        <p><em><h6>TSS/IMTO, C/Capt</h6></em>
-                        Email: derekvastola@college.harvard.edu </p>
-                        <a href="mailto:derekvastola@college.harvard.edu" class="btn btn-primary">Email</a>
-                        </div>
-                    </div>
-                  </div>  
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                    <div class="card h-100">
-                     <div class="card-body">
-                      <h5 class="card-title">Michael Mizell</h5>
-                      <p><em><h6>TSS/DCO, C/Capt</h6></em>
-                      Email: michaelmizell@college.harvard.edu </p>
-                       <a href="mailto:michaelmizell@college.harvard.edu" class="btn btn-primary">Email</a>
-                    </div>
-                    </div>
-                </div> 
-
-                <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                  <div class="card h-100">
-                   <div class="card-body">
-                    <h5 class="card-title">Ella Frantzen</h5>
-                    <p><em><h6>TSS/FTPO, C/Capt</h6></em>
-                    Email: ella.frantzen@tufts.edu </p>
-                     <a href="mailto:ella.frantzen@tufts.edu" class="btn btn-primary">Email</a>
-                  </div>
-                  </div>
-              </div>
-
-              <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-                <div class="card h-100">
-                 <div class="card-body">
-                  <h5 class="card-title">Jack Walker</h5>
-                  <p><em><h6>Physical Fitness Officer, C/Maj</h6></em>
-                  Email: jackwalker@college.harvard.edu  </p>
-                   <a href="mailto:jackwalker@college.harvard.edu " class="btn btn-primary">Email</a>
-                </div>
-                </div>
-            </div>
-
-            <div class="col-sm-12 col-md-6 col-lg-4" style="margin-top:2vh;">
-              <div class="card h-100">
-               <div class="card-body">
-                <h5 class="card-title">Drew Gable</h5>
-                <p><em><h6>Extended Physical Fitness Officer, C/Capt</h6></em>
-                Email: drewg191@mit.edu  </p>
-                 <a href="mailto:drewg191@mit.edu " class="btn btn-primary">Email</a>
-              </div>
-              </div>
-          </div>
-    
-            </div>
-            
+    <div id="attribution">
+        Protected by <a href="https://www.maxlaumeister.com/pagecrypt/">PageCrypt</a>
     </div>
+    <script>
+    (function() {
+
+        var pl = "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";
         
+        var submitPass = document.getElementById('submitPass');
+        var passEl = document.getElementById('pass');
+        var invalidPassEl = document.getElementById('invalidPass');
+        var trycatcherror = document.getElementById('trycatcherror');
+        var successEl = document.getElementById('success');
+        var contentFrame = document.getElementById('contentFrame');
+        
+        // Sanity checks
 
-  
+        if (pl === "") {
+            submitPass.disabled = true;
+            passEl.disabled = true;
+            alert("This page is meant to be used with the encryption tool. It doesn't work standalone.");
+            return;
+        }
 
-    <footer style="margin-bottom:5vh;">
+        if (!isSecureContext) {
+            document.querySelector("#passArea").style.display = "none";
+            document.querySelector("#securecontext").style.display = "block";
+            return;
+        }
 
-    </footer>
+        if (!crypto.subtle) {
+            document.querySelector("#passArea").style.display = "none";
+            document.querySelector("#nocrypto").style.display = "block";
+            return;
+        }
+        
+        function str2ab(str) {
+            var ustr = atob(str);
+            var buf = new ArrayBuffer(ustr.length);
+            var bufView = new Uint8Array(buf);
+            for (var i=0, strLen=ustr.length; i < strLen; i++) {
+                bufView[i] = ustr.charCodeAt(i);
+            }
+            return bufView;
+        }
 
+        async function deriveKey(salt, password) {
+            const encoder = new TextEncoder()
+            const baseKey = await crypto.subtle.importKey(
+                'raw',
+                encoder.encode(password),
+                'PBKDF2',
+                false,
+                ['deriveKey'],
+            )
+            return await crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt, iterations: 100000, hash: 'SHA-256' },
+                baseKey,
+                { name: 'AES-GCM', length: 256 },
+                true,
+                ['decrypt'],
+            )
+        }
+        
+        async function doSubmit(evt) {
+            submitPass.disabled = true;
+            passEl.disabled = true;
+
+            let iv, ciphertext, key;
+            
+            try {
+                var unencodedPl = str2ab(pl);
+
+                const salt = unencodedPl.slice(0, 32)
+                iv = unencodedPl.slice(32, 32 + 16)
+                ciphertext = unencodedPl.slice(32 + 16)
+
+                key = await deriveKey(salt, passEl.value);
+            } catch (e) {
+                trycatcherror.style.display = "inline";
+                console.error(e);
+                return;
+            }
+
+            try {
+                const decryptedArray = new Uint8Array(
+                    await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext)
+                );
+
+                let decrypted = new TextDecoder().decode(decryptedArray);
+
+                if (decrypted === "") throw "No data returned";
+
+                const basestr = '<base href="." target="_top">';
+                const anchorfixstr = `
+                    <script>
+                        Array.from(document.links).forEach((anchor) => {
+                            const href = anchor.getAttribute("href");
+                            if (href.startsWith("#")) {
+                                anchor.addEventListener("click", function(e) {
+                                    e.preventDefault();
+                                    const targetId = this.getAttribute("href").substring(1);
+                                    const targetEl = document.getElementById(targetId);
+                                    targetEl.scrollIntoView();
+                                });
+                            }
+                        });
+                    <\/script>
+                `;
+                
+                // Set default iframe link targets to _top so all links break out of the iframe
+                if (decrypted.includes("<head>")) decrypted = decrypted.replace("<head>", "<head>" + basestr);
+                else if (decrypted.includes("<!DOCTYPE html>")) decrypted = decrypted.replace("<!DOCTYPE html>", "<!DOCTYPE html>" + basestr);
+                else decrypted = basestr + decrypted;
+
+                // Fix fragment links
+                if (decrypted.includes("</body>")) decrypted = decrypted.replace("</body>", anchorfixstr + '</body>');
+                else if (decrypted.includes("</html>")) decrypted = decrypted.replace("</html>", anchorfixstr + '</html>');
+                else decrypted = decrypted + anchorfixstr;
+                
+                contentFrame.srcdoc = decrypted;
+                
+                successEl.style.display = "inline";
+                setTimeout(function() {
+                    dialogWrap.style.display = "none";
+                }, 1000);
+            } catch (e) {
+                invalidPassEl.style.display = "inline";
+                passEl.value = "";
+                submitPass.disabled = false;
+                passEl.disabled = false;
+                console.error(e);
+                return;
+            }
+        }
+        
+        submitPass.onclick = doSubmit;
+        passEl.onkeypress = function(e){
+            if (!e) e = window.event;
+            var keyCode = e.keyCode || e.which;
+            invalidPassEl.style.display = "none";
+            if (keyCode == '13'){
+              // Enter pressed
+              doSubmit();
+              return false;
+            }
+        }
+    })();
+    </script>
   </body>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 </html>
